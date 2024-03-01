@@ -1,0 +1,65 @@
+{% include "header.html" %}
+
+<div class="bg-body-tertiary p-5 rounded">
+      <div class="col-sm-8 py-5 mx-auto">
+        <h1 class="display-5 fw-normal">London</h1>
+
+        <p>The best place to get information about restaurants all around London. Dont get caught sleeping</p>
+        <p>
+          <a class="btn btn-primary" href="/docs/5.3/components/navbar/#offcanvas" role="button">Learn more about offcanvas navbars »</a>
+        </p>
+    </div>
+</div>
+<p> Click To view Location</p>
+{% for cafe in all_cafes %}
+
+<div class="post-preview">
+       <img src="cafe.img_url">
+        <a href="{{ cafe.map_url }}">
+          <h2 class="post-title">{{ cafe.name }}</h2>
+          <h3 class="post-subtitle">{{ cafe.location }}</h3>
+          <p>Number of seats: {{cafe.seats }}</p>
+          <p>Price Of Coffee: {{cafe.coffee_price}}</p>
+        </a>
+
+        <p class="post-meta">
+          Has Wifi:
+          <!-- post.author.name is now a User object -->
+          {% if cafe.has_wifi %}
+           Yes
+          {% else %}
+          No
+          {% endif %}
+        </p>
+        <p class="post-meta">
+          Has Toilet:
+          <!-- post.author.name is now a User object -->
+          {% if cafe.has_toilet %}
+           Yes
+          {% else %}
+          No
+          {% endif %}
+        </p>
+        <p class="post-meta">
+          Has Sockets:
+          <!-- post.author.name is now a User object -->
+          {% if cafe.has_sockets %}
+           Yes
+          {% else %}
+          No
+          {% endif %}
+        </p>
+        <p class="post-meta">
+          Has Can Take Calls:
+          <!-- post.author.name is now a User object -->
+          {% if cafe.can_take_calls %}
+            Yes
+          {% else %}
+          No
+          {% endif %}
+        </p>
+         <a href="{{url_for('delete_post', cafe_id=cafe.id) }}">✘</a>
+      </div>
+      <!-- Divider-->
+      <hr class="my-4" />
+      {% endfor %}
